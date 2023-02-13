@@ -1,3 +1,4 @@
+#include "header.h"
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -94,5 +95,29 @@ int main(int argc, char **argv) {
 
     printf("  Maximum number of warps per multiprocessor:     %d\n",
            deviceProp.maxThreadsPerMultiProcessor / 32);
+
+    /**
+     * shared memory 访问模式配置
+     * 可以使用 cudaError_t cudaDeviceGetSharedMemConfig(cudaSharedMemConfig * pConfig); 来查询配置
+     * 可以使用 cudaError_t cudaDeviceSetShareMemConfig(cudaSharedMemConfig config); 来修改配置
+     *
+     * cudaSharedMemBankSizeDefault
+     * cudaSharedMemBankSizeFourByte
+     * cudaSharedMemBankSizeEightByte
+     */
+
+    cudaSharedMemConfig MemConfig;
+    CHECK(cudaDeviceGetSharedMemConfig(&MemConfig));
+    printf("----------------------------------------------------------\n");
+    switch (MemConfig) {
+
+    case cudaSharedMemBankSizeFourByte:
+        printf("the device is cudaSharedMemBankSizeFourByte: 4-Byte\n");
+        break;
+    case cudaSharedMemBankSizeEightByte:
+        printf("the device is cudaSharedMemBankSizeEightByte: 8-Byte\n");
+        break;
+    }
+    printf("----------------------------------------------------------\n");
     exit(EXIT_SUCCESS);
 }
