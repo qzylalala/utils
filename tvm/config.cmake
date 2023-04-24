@@ -46,7 +46,7 @@
 # - ON: enable CUDA with cmake's auto search
 # - OFF: disable CUDA
 # - /path/to/cuda: use specific path to cuda toolkit
-set(USE_CUDA OFF)
+set(USE_CUDA ON)
 
 # Whether enable ROCM runtime
 #
@@ -102,7 +102,7 @@ set(USE_SPIRV_KHR_INTEGER_DOT_PRODUCT OFF)
 set(USE_OPENGL OFF)
 
 # Whether enable MicroTVM runtime
-set(USE_MICRO OFF)
+set(USE_MICRO ON)
 
 # Whether enable RPC runtime
 set(USE_RPC ON)
@@ -142,7 +142,7 @@ set(USE_MICRO_STANDALONE_RUNTIME OFF)
 # - OFF: disable llvm, note this will disable CPU codegen
 #        which is needed for most cases
 # - /path/to/llvm-config: enable specific LLVM when multiple llvm-dev is available.
-set(USE_LLVM OFF)
+set(USE_LLVM "/usr/lib/llvm-13/bin/llvm-config --link-static")
 
 #---------------------------------------------
 # Contrib libraries
@@ -190,7 +190,7 @@ set(USE_AMX OFF)
 set(USE_OPENMP none)
 
 # Whether use contrib.random in runtime
-set(USE_RANDOM ON)
+set(USE_RANDOM OFF)
 
 # Whether use NNPack
 set(USE_NNPACK OFF)
@@ -217,19 +217,19 @@ set(USE_EDGETPU OFF)
 # - ON: enable cuDNN with cmake's auto search in CUDA directory
 # - OFF: disable cuDNN
 # - /path/to/cudnn: use specific path to cuDNN path
-set(USE_CUDNN OFF)
+set(USE_CUDNN ON)
 
 # Whether use cuBLAS
-set(USE_CUBLAS OFF)
+set(USE_CUBLAS ON)
 
 # Whether use MIOpen
-set(USE_MIOPEN OFF)
+set(USE_MIOPEN ON)
 
 # Whether use MPS
-set(USE_MPS OFF)
+set(USE_MPS ON)
 
 # Whether use rocBlas
-set(USE_ROCBLAS OFF)
+set(USE_ROCBLAS ON)
 
 # Whether use contrib sort
 set(USE_SORT ON)
@@ -297,7 +297,7 @@ set(USE_ANTLR OFF)
 set(USE_RELAY_DEBUG OFF)
 
 # Whether to build fast VTA simulator driver
-set(USE_VTA_FSIM OFF)
+set(USE_VTA_FSIM ON)
 
 # Whether to build cycle-accurate VTA simulator driver
 set(USE_VTA_TSIM OFF)
@@ -338,7 +338,7 @@ set(USE_HEXAGON_ARCH "v66")
 set(USE_HEXAGON_QHL OFF)
 
 # Whether to use ONNX codegen
-set(USE_TARGET_ONNX OFF)
+set(USE_TARGET_ONNX ON)
 
 # Whether enable BNNS runtime
 set(USE_BNNS OFF)
@@ -416,7 +416,7 @@ set(USE_GTEST AUTO)
 
 # Enable using CUTLASS as a BYOC backend
 # Need to have USE_CUDA=ON
-set(USE_CUTLASS OFF)
+set(USE_CUTLASS ON)
 
 # Enable to show a summary of TVM options
 set(SUMMARIZE OFF)
@@ -427,7 +427,10 @@ set(SUMMARIZE OFF)
 set(USE_LIBTORCH OFF)
 
 # Whether to use the Universal Modular Accelerator Interface
-set(USE_UMA OFF)
+set(USE_UMA ON)
 
 # Set custom Alloc Alignment for device allocated memory ndarray points to
 set(USE_KALLOC_ALIGNMENT 64)
+
+# to avoid potential symbol conflicts between different versions LLVM used by TVM and PyTorch
+set(HIDE_PRIVATE_SYMBOLS ON)
