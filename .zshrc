@@ -14,6 +14,8 @@ export PATH=/usr/local/cuda-11.7/lib64:$PATH
 export PATH=/home/qzylalala/bin:$PATH
 export PATH=/home/qzylalala/opt/cmake-3.24.3-linux-x86_64/bin:$PATH
 export PATH=/home/qzylalala/.local/bin:$PATH
+export PATH=/home/qzylalala/opt/ispc-v1.18.0-linux/bin:$PATH
+export PATH=/home/qzylalala/install/bin:$PATH
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/qzylalala/opt/TensorRT/lib
@@ -120,6 +122,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export GOPROXY=https://proxy.golang.com.cn,direct
 export GOROOT=/usr/local/go
+
+
+# zshrc autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
